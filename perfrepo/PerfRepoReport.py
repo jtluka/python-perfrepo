@@ -428,8 +428,6 @@ class PerfRepoReportPermission(PerfRepoObject):
             if root.tag != "report-permission" and root.tag != "permission":
                 raise PerfRepoException("Invalid xml.")
 
-            self._id = root.find("id").text
-
             try:
                 self._report_id = root.find("report-id").text
             except:
