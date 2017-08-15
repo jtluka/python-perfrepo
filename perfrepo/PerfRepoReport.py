@@ -508,7 +508,7 @@ class PerfRepoReportPermission(PerfRepoObject):
     def to_xml(self):
         self.validate()
 
-        root = Element('report-permission')
+        root = Element('permission')
 
         id_elem = ElementTree.SubElement(root, 'report-id')
         id_elem.text = str(self._report_id)
