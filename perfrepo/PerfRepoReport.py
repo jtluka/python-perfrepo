@@ -381,6 +381,12 @@ class PerfRepoReport(PerfRepoObject):
             self._set_element_atrib(value_elem, 'name', prop[0])
             self._set_element_atrib(value_elem, 'value', prop[1])
 
+        if len(self._permissions):
+            perms_elem = ElementTree.SubElement(root, 'permissions')
+            for perm in self._permissions:
+                perm_elem = perm.to_xml()
+                perms_elem.append(perm_elem)
+
         return root
 
     def __str__(self):
