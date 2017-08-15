@@ -52,12 +52,14 @@ class PerfRepoReport(PerfRepoObject):
                 recursive_dict_update(self._properties, tmp_dict)
 
             self._permissions = []
-            for entry in root.find("permissions"):
-                if entry.tag != "permission":
-                    continue
-                self._permissions.append(PerfRepoReportPermission(entry))
-                self._permissions[-1].set_report_id(self._id)
-                self._permissions[-1].validate()
+            perms = root.find("permissions")
+            if perms is not None:
+                for entry in perms:
+                    if entry.tag != "permission":
+                        continue
+                    self._permissions.append(PerfRepoReportPermission(entry))
+                    self._permissions[-1].set_report_id(self._id)
+                    self._permissions[-1].validate()
         else:
             raise PerfRepoException("Parameter xml must be"\
                                     " a string, an Element or None")
